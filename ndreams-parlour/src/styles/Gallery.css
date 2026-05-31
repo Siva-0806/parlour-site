@@ -1,0 +1,36 @@
+/* Gallery */
+.showcase-section{background:var(--deep)}
+.gallery-header{text-align:center;margin-bottom:4rem}
+.gallery-header .section-lead{margin:1rem auto 0}
+.gallery-masonry{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem;max-width:1200px;margin:0 auto}
+.gal-item{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid rgba(255,122,0,.08)}
+.gal-item:nth-child(1){grid-column:span 5;grid-row:span 2}
+.gal-item:nth-child(2){grid-column:span 7}
+.gal-item:nth-child(3){grid-column:span 4}
+.gal-item:nth-child(4){grid-column:span 3}
+.gal-item:nth-child(5){grid-column:span 5}
+.gal-item:nth-child(6){grid-column:span 4}
+.gal-bg{width:100%;height:100%;min-height:180px;transition:transform .7s cubic-bezier(.2,0,.2,1);background-size:cover;background-position:center}
+.gal-item:nth-child(1) .gal-bg{min-height:400px}
+.gal-item:nth-child(2) .gal-bg{min-height:220px}
+.gal-item:hover .gal-bg{transform:scale(1.06)}
+.gal-bg.contain{background-size:contain;background-repeat:no-repeat;background-color:#0a0a0a}
+.gal-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.92) 0%,rgba(5,5,5,.3) 50%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem}
+.gal-item:hover .gal-overlay{opacity:1}
+.gal-label{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--white)}
+.gal-sublabel{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-top:.2rem}
+@media(max-width:1024px){
+  .gallery-masonry{grid-template-columns:repeat(6,1fr)}
+  .gal-item:nth-child(1){grid-column:span 6;grid-row:span 1}
+  .gal-item:nth-child(2),.gal-item:nth-child(3){grid-column:span 3}
+  .gal-item:nth-child(4),.gal-item:nth-child(5),.gal-item:nth-child(6){grid-column:span 2}
+}
+@media(max-width:768px){
+  .gallery-masonry{grid-template-columns:1fr 1fr;gap:.8rem}
+  .gal-item:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .gal-item:nth-child(1){grid-column:span 2}
+}
+@media(max-width:480px){
+  .gallery-masonry{grid-template-columns:1fr}
+  .gal-item:nth-child(n){grid-column:span 1}
+}

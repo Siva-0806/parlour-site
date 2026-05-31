@@ -1,0 +1,9 @@
+/* Loader */
+.loader{position:fixed;inset:0;z-index:99990;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity .8s,visibility .8s}
+.loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,var(--orange),var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200%;animation:loaderShimmer 2s linear infinite;letter-spacing:.1em}
+@keyframes loaderShimmer{0%{background-position:0%}100%{background-position:200%}}
+.loader-bar{width:200px;height:1px;background:rgba(255,122,0,0.15);border-radius:1px;overflow:hidden}
+.loader-bar-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--gold));width:0;animation:loaderFill 1.8s ease forwards}
+@keyframes loaderFill{0%{width:0}100%{width:100%}}
+.loader-text{font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,122,0,.6)}
