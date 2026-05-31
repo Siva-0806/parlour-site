@@ -52,10 +52,7 @@ input,select,textarea{font-family:'DM Sans',sans-serif}
 ::-webkit-scrollbar-track{background:var(--black)}
 ::-webkit-scrollbar-thumb{background:rgba(255,122,0,0.4);border-radius:2px}
  
-/* ===== CURSOR ===== */
-#cursor{position:fixed;width:12px;height:12px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;display:none}
-#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(255,122,0,.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .35s,height .35s,border-color .35s;display:none}
-@media(hover:hover) and (pointer:fine){#cursor{display:block}#cursor-ring{display:block}}
+
  
 /* ===== LOADER ===== */
 #loader{position:fixed;inset:0;z-index:99990;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity .8s,visibility .8s}
@@ -267,38 +264,26 @@ section{position:relative}
 #showcase{background:var(--deep)}
 .gallery-header{text-align:center;margin-bottom:4rem}
 .gallery-header .section-lead{margin:1rem auto 0}
-.gallery-masonry{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:1rem;max-width:1200px;margin:0 auto}
-.gal-item{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid rgba(255,122,0,.08)}
-.gal-item:nth-child(1){grid-column:span 5;grid-row:span 2}
-.gal-item:nth-child(2){grid-column:span 7}
-.gal-item:nth-child(3){grid-column:span 4}
-.gal-item:nth-child(4){grid-column:span 3}
-.gal-item:nth-child(5){grid-column:span 5}
-.gal-item:nth-child(6){grid-column:span 4}
+.gallery-masonry{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:1200px;margin:0 auto}
+.gal-item{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid rgba(255,122,0,.08);transform-style:preserve-3d;perspective:800px}
+.gal-item:nth-child(1){grid-column:span 2;grid-row:span 2}
+.gal-item:nth-child(2){grid-column:span 1}
+.gal-item:nth-child(3){grid-column:span 1}
+.gal-item:nth-child(4){grid-column:span 1}
+.gal-item:nth-child(5){grid-column:span 1}
+.gal-item:nth-child(6){grid-column:span 1}
 .gal-bg{
-  width:100%;height:100%;min-height:180px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;
-  transition:transform .7s cubic-bezier(.2,0,.2,1);
-  padding:2rem;
-  background-size:cover;background-position:center;
+  width:100%;height:100%;min-height:220px;
+  transition:transform .5s cubic-bezier(.2,0,.2,1);
+  background-size:cover;background-position:center top;
 }
-.gal-item:nth-child(1) .gal-bg{min-height:400px}
-.gal-item:nth-child(2) .gal-bg{min-height:220px}
-.gal-item:hover .gal-bg{transform:scale(1.06)}
-.gal-emoji{font-size:2.5rem;opacity:.35;transition:opacity .4s}
-.gal-item:hover .gal-emoji{opacity:.7}
-.gal-tag{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,122,0,.5);text-align:center}
+.gal-item:nth-child(1) .gal-bg{min-height:460px;background-position:center top}
+.gal-item:nth-child(2) .gal-bg,.gal-item:nth-child(3) .gal-bg{min-height:220px}
+.gal-item:nth-child(4) .gal-bg,.gal-item:nth-child(5) .gal-bg,.gal-item:nth-child(6) .gal-bg{min-height:220px}
 .gal-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.92) 0%,rgba(5,5,5,.3) 50%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem}
 .gal-item:hover .gal-overlay{opacity:1}
 .gal-label{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--white)}
 .gal-sublabel{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-top:.2rem}
-/* Gradient palette for gallery */
-.g1{background:linear-gradient(155deg,#1a0a00,#0d0a00,rgba(255,122,0,.15),#080808)}
-.g2{background:linear-gradient(135deg,#100800,rgba(212,168,71,.14),#0a0a0a)}
-.g3{background:linear-gradient(125deg,rgba(255,90,0,.12),#0c0a0a,rgba(212,168,71,.08))}
-.g4{background:linear-gradient(145deg,rgba(212,168,71,.16),#0a0a0a)}
-.g5{background:linear-gradient(135deg,rgba(255,122,0,.18),#0a0808)}
-.g6{background:linear-gradient(135deg,rgba(180,80,0,.16),rgba(212,168,71,.1),#0a0a0a)}
  
 /* ===== TESTIMONIALS ===== */
 #testimonials{background:var(--black);overflow:hidden}
@@ -374,26 +359,22 @@ label.lbl{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:v
 .ig-header{text-align:center;margin-bottom:3.5rem}
 .ig-handle-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;letter-spacing:.2em;color:var(--orange);text-transform:uppercase;margin-top:.8rem;border:1px solid rgba(255,122,0,.25);padding:.4rem 1rem;border-radius:100px;transition:all .3s}
 .ig-handle-link:hover{background:rgba(255,122,0,.08);border-color:var(--orange)}
-.ig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem;max-width:1200px;margin:0 auto}
-.ig-cell{position:relative;aspect-ratio:1;overflow:hidden;border-radius:var(--radius);border:1px solid rgba(255,122,0,.06)}
-.ig-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;transition:transform .55s cubic-bezier(.2,0,.2,1);padding:1rem;background-size:cover;background-position:center}
-.ig-cell:hover .ig-inner{transform:scale(1.1)}
-.ig-inner span{font-size:.75rem;color:rgba(250,248,245,.3);text-align:center;letter-spacing:.05em}
-.ig-inner .ig-emoji{font-size:1.8rem;opacity:.3;transition:opacity .3s}
-.ig-cell:hover .ig-inner .ig-emoji{opacity:.7}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;max-width:1200px;margin:0 auto}
+.ig-cell{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid rgba(255,122,0,.06);transform-style:preserve-3d;perspective:800px}
+.ig-cell:nth-child(1){grid-column:span 1;grid-row:span 2}
+.ig-cell:nth-child(2){grid-column:span 1;grid-row:span 2}
+.ig-cell:nth-child(3){grid-column:span 1}
+.ig-cell:nth-child(4){grid-column:span 1}
+.ig-cell:nth-child(5){grid-column:span 1}
+.ig-cell:nth-child(6){grid-column:span 2}
+.ig-inner{width:100%;height:100%;min-height:200px;transition:transform .5s cubic-bezier(.2,0,.2,1);background-size:cover;background-position:center}
+.ig-cell:nth-child(1) .ig-inner{min-height:420px}
+.ig-cell:nth-child(2) .ig-inner{min-height:420px}
+.ig-cell:nth-child(6) .ig-inner{min-height:200px}
 .ig-hover{position:absolute;inset:0;background:rgba(5,5,5,.72);opacity:0;transition:opacity .35s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
 .ig-cell:hover .ig-hover{opacity:1}
 .ig-hover-icon{font-size:1.6rem}
 .ig-hover-stat{font-size:.78rem;color:rgba(250,248,245,.85);letter-spacing:.05em}
-/* Instagram cell gradients */
-.ib1{background:linear-gradient(145deg,rgba(255,100,0,.3),#080808)}
-.ib2{background:linear-gradient(135deg,rgba(212,168,71,.25),#090909)}
-.ib3{background:linear-gradient(155deg,rgba(255,50,0,.18),rgba(212,168,71,.15),#0a0808)}
-.ib4{background:linear-gradient(130deg,rgba(212,168,71,.28),#0a0a0a)}
-.ib5{background:linear-gradient(140deg,rgba(255,122,0,.22),#080a08)}
-.ib6{background:linear-gradient(150deg,rgba(180,80,0,.22),rgba(212,168,71,.12),#090909)}
-.ib7{background:linear-gradient(135deg,rgba(255,80,0,.2),rgba(17,17,17,1))}
-.ib8{background:linear-gradient(145deg,rgba(212,168,71,.2),rgba(255,122,0,.1),#0a0a0a)}
 .ig-cta{text-align:center;margin-top:2.5rem}
  
 /* ===== CONTACT STRIP ===== */
@@ -463,10 +444,12 @@ footer{background:rgba(4,4,4,.99);padding:4.5rem 3rem 2rem;border-top:1px solid 
   .about-frame{max-width:320px}
   .about-blob,.about-glow-ring{display:none}
   .footer-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
-  .gallery-masonry{grid-template-columns:repeat(6,1fr)}
-  .gal-item:nth-child(1){grid-column:span 6;grid-row:span 1}
-  .gal-item:nth-child(2),.gal-item:nth-child(3){grid-column:span 3}
-  .gal-item:nth-child(4),.gal-item:nth-child(5),.gal-item:nth-child(6){grid-column:span 2}
+  .gallery-masonry{grid-template-columns:repeat(2,1fr)}
+  .gal-item:nth-child(1){grid-column:span 2;grid-row:span 1}
+  .gal-item:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .ig-grid{grid-template-columns:repeat(2,1fr)}
+  .ig-cell:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .ig-cell:nth-child(1) .ig-inner,.ig-cell:nth-child(2) .ig-inner,.ig-cell:nth-child(6) .ig-inner{min-height:200px}
 }
 @media(max-width:768px){
   :root{--nav-h:62px}
@@ -480,6 +463,8 @@ footer{background:rgba(4,4,4,.99);padding:4.5rem 3rem 2rem;border-top:1px solid 
   .gallery-masonry{grid-template-columns:1fr 1fr;gap:.8rem}
   .gal-item:nth-child(n){grid-column:span 1;grid-row:span 1}
   .gal-item:nth-child(1){grid-column:span 2}
+  .ig-grid{grid-template-columns:repeat(2,1fr)}
+  .ig-cell:nth-child(n){grid-column:span 1;grid-row:span 1}
   .form-grid{grid-template-columns:1fr}
   .form-group.full,.fsub{grid-column:span 1}
   .footer-grid{grid-template-columns:1fr}
@@ -487,7 +472,6 @@ footer{background:rgba(4,4,4,.99);padding:4.5rem 3rem 2rem;border-top:1px solid 
   .stat-divider{display:none}
   .contact-inner{flex-direction:column;align-items:flex-start;gap:1.5rem}
   .form-wrap{padding:2rem 1.5rem}
-  .ig-grid{grid-template-columns:repeat(2,1fr)}
   .about-accent-box{bottom:-1rem;right:0}
   .footer-bottom{flex-direction:column;align-items:flex-start}
 }
@@ -498,14 +482,11 @@ footer{background:rgba(4,4,4,.99);padding:4.5rem 3rem 2rem;border-top:1px solid 
   .stats-inner{grid-template-columns:1fr 1fr}
   .gallery-masonry{grid-template-columns:1fr}
   .gal-item:nth-child(n){grid-column:span 1}
+  .ig-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
- 
-<!-- CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
  
 <!-- LOADER -->
 <div id="loader">
@@ -866,8 +847,8 @@ footer{background:rgba(4,4,4,.99);padding:4.5rem 3rem 2rem;border-top:1px solid 
     <a href="https://www.instagram.com/n_dreams_beautyparlour" target="_blank" class="ig-handle-link">📸 @n_dreams_beautyparlour</a>
   </div>
   <div class="ig-grid section-max">
-    <div class="ig-cell reveal" style="transition-delay:.04s"><div class="ig-inner ib1" style="background-image:url('parlourimages/bridal.png');background-size:cover;background-position:center"></div><div class="ig-hover"><div class="ig-hover-icon">📸</div><div class="ig-hover-stat">Bridal Look ✨</div></div></div>
-    <div class="ig-cell reveal" style="transition-delay:.08s"><div class="ig-inner ib2" style="background-image:url('parlourimages/glow up.jpeg');background-size:cover;background-position:center"></div><div class="ig-hover"><div class="ig-hover-icon">📸</div><div class="ig-hover-stat">Glow Up 🌟</div></div></div>
+    <div class="ig-cell reveal" style="transition-delay:.04s"><div class="ig-inner ib1" style="background-image:url('parlourimages/Bridal Dreams.jpeg');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:#0a0a0a"></div><div class="ig-hover"><div class="ig-hover-icon">📸</div><div class="ig-hover-stat">Bridal Look ✨</div></div></div>
+    <div class="ig-cell reveal" style="transition-delay:.08s"><div class="ig-inner ib2" style="background-image:url('parlourimages/glow up.jpeg');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:#0a0a0a"></div><div class="ig-hover"><div class="ig-hover-icon">📸</div><div class="ig-hover-stat">Glow Up 🌟</div></div></div>
     <div class="ig-cell reveal" style="transition-delay:.12s"><div class="ig-inner ib4" style="background-image:url('parlourimages/Hair goals.jpeg');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:#0a0a0a"></div><div class="ig-hover"><div class="ig-hover-icon">📸</div><div class="ig-hover-stat">Hair Goals ✂</div></div></div>
     <div class="ig-cell reveal" style="transition-delay:.16s"><div class="ig-inner ib6" style="background-image:url('parlourimages/skin  care.jpeg');background-size:cover;background-position:center"></div><div class="ig-hover"><div class="ig-hover-icon">📸</div><div class="ig-hover-stat">Skin Care 🌸</div></div></div>
     <div class="ig-cell reveal" style="transition-delay:.2s"><div class="ig-inner ib7" style="background-image:url('parlourimages/Brow art 2.jpeg');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:#0a0a0a"></div><div class="ig-hover"><div class="ig-hover-icon">📸</div><div class="ig-hover-stat">Brow Art 👁</div></div></div>
@@ -975,45 +956,7 @@ window.addEventListener('load',function(){
   },2000)
 })
  
-// ---- CUSTOM CURSOR ----
-var cursor=document.getElementById('cursor')
-var ring=document.getElementById('cursor-ring')
-var mx=0,my=0,rx=0,ry=0
- 
-document.addEventListener('mousemove',function(e){
-  mx=e.clientX;my=e.clientY
-  cursor.style.left=mx+'px'
-  cursor.style.top=my+'px'
-})
- 
-;(function animRing(){
-  rx+=(mx-rx)*.1
-  ry+=(my-ry)*.1
-  ring.style.left=rx+'px'
-  ring.style.top=ry+'px'
-  requestAnimationFrame(animRing)
-})()
- 
-var interactables=document.querySelectorAll('button,a,.svc-card,.gal-item,.ig-cell,.rev-card')
-interactables.forEach(function(el){
-  el.addEventListener('mouseenter',function(){
-    cursor.style.width='20px'
-    cursor.style.height='20px'
-    cursor.style.background='var(--gold)'
-    ring.style.width='52px'
-    ring.style.height='52px'
-    ring.style.borderColor='rgba(212,168,71,.6)'
-  })
-  el.addEventListener('mouseleave',function(){
-    cursor.style.width='12px'
-    cursor.style.height='12px'
-    cursor.style.background='var(--orange)'
-    ring.style.width='36px'
-    ring.style.height='36px'
-    ring.style.borderColor='rgba(255,122,0,.5)'
-  })
-})
- 
+
 // ---- PARTICLES ----
 ;(function createParticles(){
   var container=document.getElementById('particlesContainer')
@@ -1178,7 +1121,7 @@ function handleBooking(){
   if(msg)text+='*Message:* '+encodeURIComponent(msg)+'%0A'
   text+='%0AI would like to book an appointment. Please confirm!'
  
-  window.open('https://wa.me/918695551665?text='+text,'_blank')
+  location.href='https://wa.me/918695551665?text='+text
  
   document.getElementById('formFields').classList.add('hidden')
   document.getElementById('formSuccess').classList.add('show')
@@ -1208,17 +1151,23 @@ document.querySelectorAll('.svc-card').forEach(function(card){
   })
 })
  
-// ---- GALLERY PARALLAX ----
-document.querySelectorAll('.gal-item').forEach(function(item){
+// ---- GALLERY & INSTAGRAM 3D TILT ----
+document.querySelectorAll('.gal-item,.ig-cell').forEach(function(item){
   item.addEventListener('mousemove',function(e){
     var rect=item.getBoundingClientRect()
     var x=(e.clientX-rect.left)/rect.width-.5
     var y=(e.clientY-rect.top)/rect.height-.5
-    var bg=item.querySelector('.gal-bg')
-    if(bg)bg.style.transform='scale(1.06) translate('+(x*8)+'px,'+(y*8)+'px)'
+    item.style.transform='perspective(800px) rotateX('+(y*-12)+'deg) rotateY('+(x*12)+'deg) scale(1.04)'
+    item.style.boxShadow='0 20px 60px rgba(255,122,0,.25)'
+    item.style.zIndex='2'
+    var bg=item.querySelector('.gal-bg,.ig-inner')
+    if(bg)bg.style.transform='scale(1.06) translate('+(x*6)+'px,'+(y*6)+'px)'
   })
   item.addEventListener('mouseleave',function(){
-    var bg=item.querySelector('.gal-bg')
+    item.style.transform=''
+    item.style.boxShadow=''
+    item.style.zIndex=''
+    var bg=item.querySelector('.gal-bg,.ig-inner')
     if(bg)bg.style.transform=''
   })
 })
